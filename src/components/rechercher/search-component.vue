@@ -271,7 +271,6 @@ export default {
             handleListeOperation();
             handleListeStanding ()
         })
-
         
 
         // Methods
@@ -311,6 +310,7 @@ export default {
                                 data: 'rechercher_un_bien'
                             }
                         })
+                        
                     }
                 } else {
                     console.log(res)

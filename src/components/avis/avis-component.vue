@@ -110,7 +110,6 @@ export default {
         getInfoAccueil() {
             processListeFetcher(LISTE_AVIS_CLIENT).then((res) => {
                 this.avisData = res;
-                console.log('AVIS', res);
             })
         }
     },

@@ -23,6 +23,7 @@ library.add(fab);
 import { far } from '@fortawesome/free-regular-svg-icons';
 library.add(far);
 import { dom } from "@fortawesome/fontawesome-svg-core";
+
 import ToastService from 'primevue/toastservice';
 import store from './store/index'
 // import VueEasyLightbox from 'vue-easy-lightbox';
@@ -31,7 +32,7 @@ import withUUID from "vue-uuid";
 // import { Quasar } from 'quasar'
 
 // Import icon libraries
-import '@quasar/extras/material-icons/material-icons.css'
+//import '@quasar/extras/material-icons/material-icons.css'
 
 // Import Quasar css
 
@@ -40,6 +41,7 @@ import '@quasar/extras/material-icons/material-icons.css'
 // import StyleVuesax from 'vuesax3/'
 
 dom.watch();
+
 
 
 

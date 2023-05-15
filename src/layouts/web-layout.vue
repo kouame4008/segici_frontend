@@ -2,7 +2,9 @@
 <button id="myBtn" @click="handleRemote">
     <i class="fa fa-arrow-up" style="font-weight : bold; font-size: 20px"></i>
 </button>
-<div id="loading"> <img id="loading-image" src="@/assets/images/loader.svg" alt="Loading..." /> </div>
+<div id="loading"> 
+    <img id="loading-image" src="@/assets/images/loader.svg" alt="Loading..." /> 
+</div>
 <Header />
 <transition name="fade" mode="out-in">
     <keep-alive>
@@ -54,23 +56,23 @@ export default {
     mounted() {
         window.scrollTo({top: 0,left: 0,behavior: 'smooth'})
 
-        this.$loadScript('https://code.jquery.com/jquery-2.2.4.js').then(() => {
-            this.$loadScript('https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.0.0-beta.2.4/owl.carousel.js').then(() => {
-                this.$loadScript('https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js').then(() => {
-                    this.$loadScript('https://unpkg.com/swiper/swiper-bundle.js');
-                    this.$loadScript('https://unpkg.com/aos@2.3.1/dist/aos.js');
-                    this.$loadScript('https://unpkg.com/swiper/swiper-bundle.min.js').then(() => {
-                        this.$loadScript(this.swiperJs);
-                    })
+        // this.$loadScript('https://code.jquery.com/jquery-2.2.4.js').then(() => {
+        //     this.$loadScript('https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.0.0-beta.2.4/owl.carousel.js').then(() => {
+        //         this.$loadScript('https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js').then(() => {
+        //             this.$loadScript('https://unpkg.com/swiper/swiper-bundle.js');
+        //             this.$loadScript('https://unpkg.com/aos@2.3.1/dist/aos.js');
+        //             this.$loadScript('https://unpkg.com/swiper/swiper-bundle.min.js').then(() => {
+        //                 // this.$loadScript(this.swiperJs);
+        //             })
 
-                    this.$loadScript('https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js');
-                    this.$loadScript('https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js')
-                    this.$loadScript(this.API);
-                })
-            })
-        }).catch((e) => {
-            console.log(e)
-        });
+        //             this.$loadScript('https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js');
+        //             this.$loadScript('https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js')
+        //             // this.$loadScript(this.API);
+        //         })
+        //     })
+        // }).catch((e) => {
+        //     console.log(e)
+        // });
 
         setTimeout(() => {
            $('#loading').hide ();

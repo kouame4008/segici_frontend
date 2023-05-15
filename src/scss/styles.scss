@@ -5810,3 +5810,25 @@ ul li {
 	color : $secondary_color;
 	font-weight: bold;
   }
+  .ant-carousel .slick-arrow.custom-slick-arrow {
+	width: 45px;
+	height: 45px;
+	font-size: 25px;
+	color: #fff;
+	background-color: #00a8ff;
+	z-index: 9;
+	display: flex !important;
+	justify-content: center;
+	align-items: center;
+	border-radius: 5px;
+  }
+
+  .ant-carousel .slick-next::before , .ant-carousel .slick-prev::before{
+	content: '';
+	display: none !important;
+  }
+  .ant-carousel .custom-slick-arrow:hover {
+	color: #fff !important;
+	background-color: #00a8ff !important;
+	z-index: 9 !important;
+  }

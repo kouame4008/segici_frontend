@@ -1,80 +1,29 @@
 <template>
-<div class="mt-3 row" v-if="hotels && hotels.length > 0">
-    <div class="mb-3 col-md-6" v-if="hotels && hotels[0]">
-        <div class="card-residence-left">
-            <div class="residence-image">
-                <img v-if="hotels && hotels[0]" :src="API+'fichier/photo_de_bien/'+hotels[0].image_hotel" alt="">
-            </div>
-            <div class="residence-footer">
-                <header class="residence-name">
-                    {{ hotels[0].nom_hotel }}
-                </header>
-                <small class="residence-desc">
-                    {{ hotels[0].description_hotel }}
-                </small>
-                <div class="d-flex justify-content-between">
-                    <div class="residence-prise">
-                        <!-- <font>{{ formatteurMillier (hotels[0].tarif) }}</font><span>/nuit</span> -->
-                    </div>
-                    <a-button type="" style="background : #00A8FF; color: #FFF; border : 0;font-weight: bold" @click="openPage(hotels[0] && hotels[0].id)">
-                        AFFICHER
-                        <ArrowRightOutlined style="position : relative; top : -4px" />
-                    </a-button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="mb-3 col-md-6">
-        <a-space direction="vertical" class="w-100">
-            <div class="card-residence-right" v-if="hotels && hotels[1]">
+<div class="mt-3 row" v-if="hotels && hotels.length > 0"> 
+        <div class="mb-3 col-md-6" v-for="(item, i) in hotels" :key="i">
+            <div class="card-residence-left" v-if="i<2">
                 <div class="residence-image">
-                    <img v-if="hotels && hotels[1]" :src="API+'fichier/photo_de_bien/'+hotels[1].image_hotel" alt="">
+                    <img  :src="API+'fichier/photo_de_bien/'+item.image_hotel" alt="">
                 </div>
                 <div class="residence-footer">
                     <header class="residence-name">
-                        {{hotels &&  hotels[1].nom_hotel }}
+                        {{ item.nom_hotel }}
                     </header>
                     <small class="residence-desc">
-                        {{hotels &&  hotels[1].description_hotel }}
+                        {{ item.description_hotel }}
                     </small>
                     <div class="d-flex justify-content-between">
                         <div class="residence-prise">
-                            <!-- <font>{{ formatteurMillier (residences[1].tarif) }}</font><span>/nuit</span> -->
+                            <!-- <font>{{ formatteurMillier (item.tarif) }}</font><span>/nuit</span> -->
                         </div>
-                        <a-button type="" style="background : #00A8FF; color: #FFF; border : 0;font-weight: bold" @click="openPage(hotels[1] && hotels[1].id)">
+                        <a-button type="" style="background : #00A8FF; color: #FFF; border : 0;font-weight: bold" @click="openPage(item && item.id)">
                             AFFICHER
                             <ArrowRightOutlined style="position : relative; top : -4px" />
                         </a-button>
                     </div>
                 </div>
             </div>
-
-            <div class="card-residence-right" v-if="hotels && hotels[2]">
-                <div class="residence-image">
-                    <img v-if="hotels && hotels[2]" :src="API+'fichier/photo_de_bien/'+hotels[2].image_hotel" alt="">
-                </div>
-                <div class="residence-footer">
-                    <header class="residence-name">
-                        {{hotels &&  hotels[2].nom_hotel }}
-                    </header>
-                    <small class="residence-desc">
-                        {{hotels &&  hotels[2].description_hotel }}
-                    </small>
-                    <div class="d-flex justify-content-between">
-                        <div class="residence-prise">
-                            <!-- <font>
-                                {{ formatteurMillier (residences[2].tarif) }}
-                            </font><span>/nuit</span> -->
-                        </div>
-                        <a-button type="" style="background : #00A8FF; color: #FFF; border : 0;font-weight: bold" @click="openPage(hotels[2] && hotels[2].id)">
-                            AFFICHER
-                            <ArrowRightOutlined style="position : relative; top : -4px" />
-                        </a-button>
-                    </div>
-                </div>
-            </div>
-        </a-space>
-    </div>
+        </div> 
 </div>
 </template>
 
@@ -83,35 +32,38 @@ import {
     ArrowRightOutlined
 } from '@ant-design/icons-vue';
 import {
-    API
+    API, LISTE_HOTEL_URL
 } from '../../router/APIrouter';
 
-import useHotels from '../../data/hotel/use-hotel';
 import {
     uuid
 } from 'vue-uuid';
+import { processListeFetcher } from '../../data/process';
 
 export default {
-    setup() {
-        const {
-            hotels,
-            chargement
-        } = useHotels(2);
 
+    data () {
         return {
-            hotels,
+            hotels: [],
             API,
-            chargement
         }
     },
     methods: {
         openPage(residenceId) {
             window.location.href = "/hotels/" + residenceId+'/'+uuid.v1 ()
-        }
+        },
+        gerResidences () {
+            processListeFetcher(`${LISTE_HOTEL_URL}?etablissement_id=2`).then((res) => {
+                this.hotels = res;
+            });
+        },
     },
 
     components: {
         ArrowRightOutlined,
+    },
+    mounted () {
+        this.gerResidences ()
     }
 
 }
